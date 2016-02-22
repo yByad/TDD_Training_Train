@@ -4,8 +4,8 @@ public class Wagon {
 
     private WagonTypes Type;
 
-    public Wagon(String WagonType) {
-	this.Type = WagonTypes.valueOf(WagonType);
+    Wagon(WagonTypes type) {
+	this.Type = type;
     }
 
     public String retrieveWagonFormat() {
@@ -13,11 +13,11 @@ public class Wagon {
 	return wagonFormat;
     }
 
-    public Boolean WagonIsCargo() {
+    Boolean WagonIsCargo() {
 	return this.Type == WagonTypes.Cargo;
     }
 
-    public void fill() {
+    void fill() {
 	this.Type = WagonTypes.Cargo_Full;
     }
 
