@@ -54,6 +54,10 @@ public class TrainTest {
 	assertEquals("|OOOO|::|hThT|::|OOOO|", train.print());
 	train.detachEnd();
 	assertEquals("|OOOO|::|hThT|", train.print());
+	train.detachEnd();
+	assertEquals("|OOOO|", train.print());
+	train.detachEnd();
+	assertEquals("|OOOO|", train.print());
     }
 
     @Test

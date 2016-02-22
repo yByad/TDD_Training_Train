@@ -13,27 +13,35 @@ public class Train {
     private Trainformatter formatter;
     private List<Wagon> wagons;
     private TrainFactory factory;
+    private CargoFiller filler;
 
     public Train(String Type) {
 	factory = TrainFactory.getInstance();
 	formatter = TrainColonFormatter.getInstance();
 	this.Type = Type;
+	filler = CargoFiller.getInstance();
 	this.wagons = factory.createTrain(Type);
     }
 
     public void detachEnd() {
-	final int LAST_WAGON = wagons.size() - 1;
-	this.wagons.remove(LAST_WAGON);
+	if (wagons.size() > 1) {
+	    final int LAST_WAGON = wagons.size() - 1;
+	    this.wagons.remove(LAST_WAGON);
+	}
+
     }
 
     public void detachHead() {
-	final int FIRST_WAGON = 0;
-	this.wagons.remove(FIRST_WAGON);
+	if (wagons.size() > 1) {
+
+	    final int FIRST_WAGON = 0;
+	    this.wagons.remove(FIRST_WAGON);
+	}
     }
 
     public boolean fill() {
 	if (trainIsCargo()) {
-	    return new CargoFiller().fill(wagons);
+	    filler.fill(wagons);
 	}
 	return false;
 
