@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sii.maroc.Wagon.Wagon;
+import sii.maroc.Wagon.WagonFactory;
 
 public class TrainFactory {
 
     private static TrainFactory INSTANCE = new TrainFactory();
+    private WagonFactory factory;
+    private List<Wagon> resultTrain;
 
     private TrainFactory() {
+	resultTrain = new ArrayList<Wagon>();
+	factory = WagonFactory.getInstance();
     }
 
     public static TrainFactory getInstance() {
@@ -17,35 +22,20 @@ public class TrainFactory {
     }
 
     public List<Wagon> createTrain(String trainType) {
-	final List<Wagon> train = allocateWagonsToTrain(trainType);
-	return train;
+
+	resultTrain.clear();
+	allocateWagonsToTrain(trainType);
+	return resultTrain;
     }
 
-    private List<Wagon> allocateWagonsToTrain(String trainType) {
+    private void allocateWagonsToTrain(String trainType) {
 
 	final String headlessType = removeTrainHeads(trainType);
 
-	List<Wagon> resultTrain = creatHeadlessTrain(headlessType);
+	creatHeadlessTrain(headlessType);
 
-	if (trainHasHeadEnd(trainType)) {
-	    resultTrain = addHeadToTheEndOf(resultTrain);
-	}
-	if (trainHasHeadStart(trainType)) {
-	    resultTrain = addHeadToTheStartOf(resultTrain);
-	}
+	addHeadsToTrain(trainType);
 
-	return resultTrain;
-    }
-
-    private List<Wagon> addHeadToTheStartOf(final List<Wagon> train) {
-	final Wagon start = new Wagon("H");
-	train.add(0, start);
-	final List<Wagon> resultTrain = train;
-	return resultTrain;
-    }
-
-    private boolean trainHasHeadStart(String trainType) {
-	return trainType.startsWith("H");
     }
 
     private String removeTrainHeads(String trainType) {
@@ -53,29 +43,40 @@ public class TrainFactory {
 	return resultType;
     }
 
-    private List<Wagon> creatHeadlessTrain(String type) {
-	List<Wagon> result = new ArrayList<Wagon>();
+    private void creatHeadlessTrain(String type) {
 	for (int i = 0; i < type.length(); i++) {
-	    final Wagon wagon = new Wagon(type.charAt(i) + "");
-	    result.add(wagon);
+	    final Wagon wagon = factory.createWagon(type.charAt(i) + "");
+	    resultTrain.add(wagon);
 	}
-	return result;
+    }
+
+    private void addHeadsToTrain(String trainType) {
+	if (trainHasHeadStart(trainType)) {
+	    addHeadToTheStartOf();
+	}
+	if (trainHasHeadEnd(trainType)) {
+	    addHeadToTheEndOf();
+	}
+
+    }
+
+    private boolean trainHasHeadStart(String trainType) {
+	return trainType.startsWith("H");
+    }
+
+    private void addHeadToTheStartOf() {
+	final Wagon start = factory.createWagon("H");
+	final int trainHeadPosition = 0;
+	resultTrain.add(trainHeadPosition, start);
     }
 
     private Boolean trainHasHeadEnd(String trainType) {
 	return trainType.endsWith("H");
     }
 
-    private List<Wagon> addHeadToTheEndOf(List<Wagon> train) {
-	Wagon end = new Wagon("Head_End");
-	final List<Wagon> resltTrain = train;
-	resltTrain.add(end);
-	return resltTrain;
-    }
-
-    public List<Wagon> linkWagons(String type) {
-	final List<Wagon> train = allocateWagonsToTrain(type);
-	return train;
+    private void addHeadToTheEndOf() {
+	Wagon end = factory.createWagon("Head_End");
+	resultTrain.add(end);
     }
 
 }

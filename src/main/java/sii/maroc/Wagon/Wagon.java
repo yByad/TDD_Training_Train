@@ -14,11 +14,11 @@ public class Wagon {
     }
 
     public Boolean WagonIsCargo() {
-	return this.Type == WagonTypes.C;
+	return this.Type == WagonTypes.Cargo;
     }
 
     public void fill() {
-	this.Type = WagonTypes.C_F;
+	this.Type = WagonTypes.Cargo_Full;
     }
 
 }

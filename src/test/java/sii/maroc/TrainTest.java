@@ -39,10 +39,10 @@ public class TrainTest {
 	assertEquals("<HHHH::|OOOO|::|____|::|OOOO|::|____|", train.print());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void NonExistingWagon() {
 	Train train = new Train("TBVXZ");
-	train.print();
+	assertEquals("|%%%%|::|%%%%|::|%%%%|::|%%%%|::|%%%%|", train.print());
     }
 
     @Test

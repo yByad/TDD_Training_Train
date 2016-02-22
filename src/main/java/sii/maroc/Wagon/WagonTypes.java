@@ -2,7 +2,8 @@ package sii.maroc.Wagon;
 
 public enum WagonTypes {
 
-    P("|OOOO|"), H("<HHHH::"), Head_End("::HHHH>"), C("|____|"), R("|hThT|"), C_F("|^^^^|");
+    Passenger("|OOOO|"), Head("<HHHH::"), Head_End("::HHHH>"), Cargo("|____|"), Restaurant("|hThT|"), Cargo_Full(
+	    "|^^^^|"), Undefined("|%%%%|");
 
     private String wagon;
 
