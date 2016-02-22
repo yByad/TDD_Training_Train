@@ -4,6 +4,7 @@ import java.util.List;
 
 import sii.maroc.Train.TrainColonFormatter;
 import sii.maroc.Train.TrainFactory;
+import sii.maroc.Wagon.CargoFiller;
 import sii.maroc.Wagon.Wagon;
 
 public class Train {
@@ -31,28 +32,16 @@ public class Train {
     }
 
     public boolean fill() {
-
 	if (trainIsCargo()) {
-	    return fillFirstCargo();
+	    return new CargoFiller().fill(wagons);
 	}
 	return false;
 
     }
 
     private Boolean trainIsCargo() {
+
 	return Type.contains("C");
-    }
-
-    private boolean fillFirstCargo() {
-
-	for (int i = 0; i < wagons.size(); i++) {
-	    if (wagons.get(i).WagonIsCargo()) {
-		wagons.get(i).fill();
-		break;
-	    }
-	}
-	return false;
-
     }
 
     public Object print() {
