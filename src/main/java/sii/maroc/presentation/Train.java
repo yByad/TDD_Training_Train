@@ -13,13 +13,10 @@ public class Train {
     private Trainformatter formatter;
     private List<Wagon> wagons;
     private TrainFactory factory;
-    private CargoFiller filler;
 
     public Train(String Type) {
 	factory = TrainFactory.getInstance();
-	formatter = TrainColonFormatter.getInstance();
 	this.Type = Type;
-	filler = CargoFiller.getInstance();
 	this.wagons = factory.createTrain(Type);
     }
 
@@ -41,7 +38,9 @@ public class Train {
 
     public boolean fill() {
 	if (trainIsCargo()) {
-	    filler.fill(wagons);
+
+	    final CargoFiller filler = new CargoFiller(wagons);
+	    filler.fill();
 	}
 	return false;
 
@@ -53,7 +52,7 @@ public class Train {
     }
 
     public Object print() {
-
+	formatter = TrainColonFormatter.getInstance();
 	final String trainFormat = formatter.format(this.wagons);
 	return trainFormat;
     }
