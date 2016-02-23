@@ -1,9 +1,8 @@
 package sii.maroc.Train;
 
-import java.util.List;
 import java.util.regex.Pattern;
 
-import sii.maroc.Wagon.Wagon;
+import sii.maroc.Wagon.Wagons;
 import sii.maroc.presentation.Trainformatter;
 
 public class TrainColonFormatter implements Trainformatter {
@@ -22,18 +21,17 @@ public class TrainColonFormatter implements Trainformatter {
     }
 
     @Override
-    public String format(List<Wagon> wagons) {
-	formattedTrain = "";
-	for (int i = 0; i < wagons.size(); i++) {
-	    formattedTrain += wagons.get(i).retrieveWagonFormat();
-	}
-	formattedTrain = formatTrain();
+    public String format(Wagons wagons) {
+
+	final String unformattedTrain = wagons.getWagonsPresentation();
+
+	formattedTrain = formatTrain(unformattedTrain);
 	return formattedTrain;
     }
 
-    private String formatTrain() {
+    private String formatTrain(final String unformattedTrain) {
 
-	formattedTrain = formattedTrain.replaceAll(Pattern.quote(oldLink), newLink);
+	formattedTrain = unformattedTrain.replaceAll(Pattern.quote(oldLink), newLink);
 	return formattedTrain;
     }
 }

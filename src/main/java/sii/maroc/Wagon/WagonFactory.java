@@ -22,13 +22,13 @@ public class WagonFactory {
 	    return new Wagon(WagonTypes.Passenger);
 	case "C":
 
-	    return new Wagon(WagonTypes.Cargo);
+	    return new Wagon(WagonTypes.Cargo_Unfilled);
 	case "R":
 
 	    return new Wagon(WagonTypes.Restaurant);
 	case "Head_End":
 
-	    return new Wagon(WagonTypes.Head_End);
+	    return new Wagon(WagonTypes.Head_Right);
 	default:
 	    return new Wagon(WagonTypes.Undefined);
 	}

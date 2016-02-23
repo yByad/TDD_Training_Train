@@ -2,17 +2,14 @@ package sii.maroc.Wagon;
 
 public enum WagonTypes {
 
-    Passenger("|OOOO|"), Head("<HHHH::"), Head_End("::HHHH>"), Cargo("|____|"), Restaurant("|hThT|"), Cargo_Full(
-	    "|^^^^|"), Undefined("|%%%%|");
+    Passenger, Head, Head_Right, Cargo_Unfilled, Restaurant, Cargo_Filled, Undefined;
 
-    private String wagon;
-
-    private WagonTypes(final String wagon) {
-	this.wagon = wagon;
+    private WagonTypes() {
     }
 
-    public String value() {
-	return this.wagon;
+    public Boolean isOfType(WagonTypes type) {
+	return this.equals(type);
+
     }
 
 }

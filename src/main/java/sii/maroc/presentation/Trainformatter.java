@@ -1,11 +1,9 @@
 package sii.maroc.presentation;
 
-import java.util.List;
-
-import sii.maroc.Wagon.Wagon;
+import sii.maroc.Wagon.Wagons;
 
 public interface Trainformatter {
 
-    String format(final List<Wagon> wagons);
+    String format(final Wagons wagons);
 
 }
