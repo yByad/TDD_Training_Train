@@ -22,6 +22,12 @@ public class TrainTest {
     }
 
     @Test
+    public void fullyMixedTrain() {
+	Train train = new Train("HPHRHPH");
+	assertEquals("<HHHH::|OOOO|::<HHHH::|hThT|::<HHHH::|OOOO|::HHHH>", train.print());
+    }
+
+    @Test
     public void doubleHeadedTrain() {
 	Train train = new Train("HPRPH");
 	assertEquals("<HHHH::|OOOO|::|hThT|::|OOOO|::HHHH>", train.print());
