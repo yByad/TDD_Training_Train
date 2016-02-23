@@ -22,14 +22,12 @@ public class TrainFactory {
     }
 
     public List<Wagon> createTrain(String trainType) {
-
 	resultTrain.clear();
 	attachWagonsToTrain(trainType);
 	return resultTrain;
     }
 
     private void attachWagonsToTrain(String trainType) {
-
 	for (int i = 0; i < trainType.length(); i++) {
 	    final Wagon wagon = wagonFactory.createWagon(trainType.charAt(i) + "");
 	    resultTrain.add(wagon);

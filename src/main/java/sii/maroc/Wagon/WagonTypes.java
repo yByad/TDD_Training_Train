@@ -9,7 +9,6 @@ public enum WagonTypes {
 
     public Boolean isOfType(WagonTypes type) {
 	return this.equals(type);
-
     }
 
 }

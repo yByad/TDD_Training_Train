@@ -12,7 +12,7 @@ public class Wagon {
 
     String retrieveWagonFormat() {
 	final wagonPresentations presentation = new wagonPresentations();
-	final String wagonFormat = presentation.getPresentation(Type);
+	final String wagonFormat = presentation.getPresentationOf(Type);
 	return wagonFormat;
     }
 

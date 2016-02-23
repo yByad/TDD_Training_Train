@@ -17,7 +17,6 @@ public class Wagons {
 
     public void removeHead() {
 	if (hasHead()) {
-
 	    final int FIRST_WAGON = 0;
 	    this.wagonsList.remove(FIRST_WAGON);
 	}
@@ -43,12 +42,10 @@ public class Wagons {
 		break;
 	}
 	return didTheFillWork;
-
     }
 
     private boolean fillWagon(final Wagon wagonToFill) {
 	if (wagonToFill.canBeFilled()) {
-
 	    return wagonToFill.fill();
 	}
 	return false;
@@ -61,7 +58,6 @@ public class Wagons {
 	} else {
 	    resultPresentation = createPresentationWithRightHead();
 	}
-
 	return resultPresentation;
     }
 
@@ -70,14 +66,17 @@ public class Wagons {
 	wagonsList.remove(wagonsList.size() - 1);
 	final Wagon rightHead = new Wagon(WagonTypes.Head_Right);
 	wagonsList.add(rightHead);
-	for (int indexOfWagon = 0; indexOfWagon < wagonsList.size(); indexOfWagon++) {
-	    unformattedTrain += wagonsList.get(indexOfWagon).retrieveWagonFormat();
-	}
-
+	unformattedTrain = createWagonsPresentation();
 	return unformattedTrain;
     }
 
     private String createPresentationWithoutRightHead() {
+	String unformattedTrain = "";
+	unformattedTrain = createWagonsPresentation();
+	return unformattedTrain;
+    }
+
+    private String createWagonsPresentation() {
 	String unformattedTrain = "";
 	for (int indexOfWagon = 0; indexOfWagon < wagonsList.size(); indexOfWagon++) {
 	    unformattedTrain += wagonsList.get(indexOfWagon).retrieveWagonFormat();

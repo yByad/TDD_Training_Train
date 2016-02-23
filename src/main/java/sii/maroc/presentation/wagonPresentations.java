@@ -10,6 +10,10 @@ public class wagonPresentations {
 
     private static Map<WagonTypes, Presentations> wagonPresentations = new HashMap<WagonTypes, Presentations>();
 
+    public wagonPresentations() {
+	initializeWagonPresentations();
+    }
+
     private void initializeWagonPresentations() {
 	for (WagonTypes types : EnumSet.allOf(WagonTypes.class)) {
 	    final String presentationName = types.name();
@@ -17,11 +21,7 @@ public class wagonPresentations {
 	}
     }
 
-    public wagonPresentations() {
-	initializeWagonPresentations();
-    }
-
-    public String getPresentation(WagonTypes type) {
+    public String getPresentationOf(WagonTypes type) {
 	final ColonPresentations wagonPresentation = (ColonPresentations) wagonPresentations.get(type);
 	final String presentation = wagonPresentation.value();
 	return presentation;
