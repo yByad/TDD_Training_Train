@@ -2,15 +2,16 @@ package sii.maroc.Wagon;
 
 import java.util.List;
 
-import sii.maroc.Train.TrainFactory;
+import sii.maroc.presentation.TrainViewColon;
 
 public class Wagons {
     private List<Wagon> wagonsList;
     private TrainFactory factory;
-    private String representation;
+    private String trainRepresentation;
+    private String unformattedTrain;
 
     public Wagons(String representation) {
-	this.representation = representation;
+	this.trainRepresentation = representation;
 	factory = TrainFactory.getInstance();
 	this.wagonsList = factory.createTrain(representation);
     }
@@ -23,7 +24,7 @@ public class Wagons {
     }
 
     private boolean hasHead() {
-	return representation.contains("H");
+	return trainRepresentation.contains("H");
     }
 
     public void removeEnd() {
@@ -33,15 +34,25 @@ public class Wagons {
 	}
     }
 
+    public void print(TrainViewColon presentation) {
+	unformattedTrain = "";
+	for (int indexOfWagon = 0; indexOfWagon < wagonsList.size(); indexOfWagon++) {
+	    final Wagon wagon = wagonsList.get(indexOfWagon);
+	    final WagonTypes wagonType = wagon.getType();
+	    unformattedTrain += presentation.getPresentationOf(wagonType);
+	}
+	presentation.setPresentation(unformattedTrain);
+    }
+
     public boolean fillCargo() {
-	Boolean didTheFillWork = false;
+	Boolean theFillWorked = false;
 	for (int i = 0; i < wagonsList.size(); i++) {
 	    final Wagon wagonToFill = wagonsList.get(i);
-	    didTheFillWork = fillWagon(wagonToFill);
-	    if (didTheFillWork)
+	    theFillWorked = fillWagon(wagonToFill);
+	    if (theFillWorked)
 		break;
 	}
-	return didTheFillWork;
+	return theFillWorked;
     }
 
     private boolean fillWagon(final Wagon wagonToFill) {
@@ -51,51 +62,8 @@ public class Wagons {
 	return false;
     }
 
-    public String getWagonsPresentation() {
-	String resultPresentation = "";
-	if (HasNoRightHead()) {
-	    resultPresentation = createPresentationWithoutRightHead();
-	} else {
-	    resultPresentation = createPresentationWithRightHead();
-	}
-	return resultPresentation;
-    }
-
-    private String createPresentationWithRightHead() {
-	String unformattedTrain = "";
-	wagonsList.remove(wagonsList.size() - 1);
-	final Wagon rightHead = new Wagon(WagonTypes.Head_Right);
-	wagonsList.add(rightHead);
-	unformattedTrain = createWagonsPresentation();
-	return unformattedTrain;
-    }
-
-    private String createPresentationWithoutRightHead() {
-	String unformattedTrain = "";
-	unformattedTrain = createWagonsPresentation();
-	return unformattedTrain;
-    }
-
-    private String createWagonsPresentation() {
-	String unformattedTrain = "";
-	for (int indexOfWagon = 0; indexOfWagon < wagonsList.size(); indexOfWagon++) {
-	    unformattedTrain += wagonsList.get(indexOfWagon).retrieveWagonFormat();
-	}
-	return unformattedTrain;
-    }
-
-    private boolean HasNoRightHead() {
-	final int LAST_WAGON_INDEX = wagonsList.size() - 1;
-	Boolean result = true;
-	final Wagon lastWagon = wagonsList.get(LAST_WAGON_INDEX);
-	if (lastWagon.isOfType(WagonTypes.Head)) {
-	    result = false;
-	}
-	return result;
-    }
-
-    public void addEnd(String representation) {
-	final Wagon wagon = new WagonFactory().createWagon(representation);
+    public void attachWagonToTheEnd(String trainRepresentation) {
+	final Wagon wagon = new WagonFactory().createWagon(trainRepresentation);
 	wagonsList.add(wagon);
     }
 

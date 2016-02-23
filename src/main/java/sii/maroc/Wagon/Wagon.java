@@ -1,8 +1,6 @@
 package sii.maroc.Wagon;
 
-import sii.maroc.presentation.wagonPresentations;
-
-public class Wagon {
+class Wagon {
 
     private WagonTypes Type;
 
@@ -10,14 +8,12 @@ public class Wagon {
 	this.Type = type;
     }
 
-    String retrieveWagonFormat() {
-	final wagonPresentations presentation = new wagonPresentations();
-	final String wagonFormat = presentation.getPresentationOf(Type);
-	return wagonFormat;
-    }
-
     Boolean canBeFilled() {
 	return this.isOfType(WagonTypes.Cargo_Unfilled);
+    }
+
+    public WagonTypes getType() {
+	return Type;
     }
 
     boolean fill() {

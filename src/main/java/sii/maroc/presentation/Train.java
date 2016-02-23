@@ -1,6 +1,5 @@
 package sii.maroc.presentation;
 
-import sii.maroc.Train.TrainColonFormatter;
 import sii.maroc.Wagon.Wagons;
 
 public class Train {
@@ -29,7 +28,8 @@ public class Train {
     }
 
     public void attachEnd(String representation) {
-	wagons.addEnd(representation);
+	this.representation += representation;
+	wagons.attachWagonToTheEnd(representation);
     }
 
     private Boolean trainIsCargo() {
@@ -37,8 +37,8 @@ public class Train {
     }
 
     public Object print() {
-	final TrainColonFormatter formatter = TrainColonFormatter.getInstance();
-	final String trainFormat = formatter.format(wagons);
-	return trainFormat;
+	final TrainViewColon colonView = new TrainViewColon();
+	wagons.print(colonView);
+	return colonView.getView();
     }
 }
