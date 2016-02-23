@@ -2,8 +2,8 @@ package sii.maroc.Wagon;
 
 import java.util.List;
 
+import sii.maroc.Types.WagonTypes;
 import sii.maroc.presentation.TrainView;
-import sii.maroc.presentation.WagonTypes;
 
 public class Wagons {
     private List<Wagon> wagonsList;

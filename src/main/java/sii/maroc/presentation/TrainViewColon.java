@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import sii.maroc.Types.WagonTypes;
+
 class TrainViewColon implements TrainView {
 
     private static Map<WagonTypes, Presentations> wagonPresentations = new HashMap<WagonTypes, Presentations>();

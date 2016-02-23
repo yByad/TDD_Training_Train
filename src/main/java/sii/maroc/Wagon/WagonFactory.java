@@ -1,6 +1,6 @@
 package sii.maroc.Wagon;
 
-import sii.maroc.presentation.WagonTypes;
+import sii.maroc.Types.WagonTypes;
 
 class WagonFactory {
 
