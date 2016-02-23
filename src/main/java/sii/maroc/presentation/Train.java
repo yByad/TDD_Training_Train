@@ -28,6 +28,10 @@ public class Train {
 	return false;
     }
 
+    public void attachEnd(String representation) {
+	wagons.addEnd(representation);
+    }
+
     private Boolean trainIsCargo() {
 	return representation.contains("C");
     }

@@ -16,6 +16,8 @@ public class TrainColonFormatter implements Trainformatter {
     private static String PipeColonHLink = "|::H";
     private static String PipeArrowLink = "|<";
     private static String PipeColonArrowLink = "|::<";
+    private static String ArrowPipeLink = ">|";
+    private static String ArrowColonPipeLink = ">::|";
     private String formattedTrain;
 
     private TrainColonFormatter() {
@@ -39,6 +41,7 @@ public class TrainColonFormatter implements Trainformatter {
 	formattedTrain = unformattedTrain;
 	formattedTrain = formattedTrain.replaceAll(Pattern.quote(PipeHLink), PipeColonHLink);
 	formattedTrain = formattedTrain.replaceAll(Pattern.quote(PipeArrowLink), PipeColonArrowLink);
+	formattedTrain = formattedTrain.replaceAll(Pattern.quote(ArrowPipeLink), ArrowColonPipeLink);
 	formattedTrain = formattedTrain.replaceAll(Pattern.quote(HPipeLink), HColonPipeLink);
 	formattedTrain = formattedTrain.replaceAll(Pattern.quote(PipesLink), PipesColonLink);
 	return formattedTrain;

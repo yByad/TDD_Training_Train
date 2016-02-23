@@ -28,6 +28,14 @@ public class TrainTest {
     }
 
     @Test
+    public void attachWagonToExistingTrain() {
+	Train train = new Train("HPHRHPH");
+	assertEquals("<HHHH::|OOOO|::<HHHH::|hThT|::<HHHH::|OOOO|::HHHH>", train.print());
+	train.attachEnd("C");
+	assertEquals("<HHHH::|OOOO|::<HHHH::|hThT|::<HHHH::|OOOO|::HHHH>::|____|", train.print());
+    }
+
+    @Test
     public void doubleHeadedTrain() {
 	Train train = new Train("HPRPH");
 	assertEquals("<HHHH::|OOOO|::|hThT|::|OOOO|::HHHH>", train.print());

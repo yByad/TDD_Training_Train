@@ -95,4 +95,9 @@ public class Wagons {
 	return result;
     }
 
+    public void addEnd(String representation) {
+	final Wagon wagon = new WagonFactory().createWagon(representation);
+	wagonsList.add(wagon);
+    }
+
 }
