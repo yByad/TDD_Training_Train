@@ -1,4 +1,4 @@
-package sii.maroc.Wagon;
+package sii.maroc.presentation;
 
 public enum WagonTypes {
 

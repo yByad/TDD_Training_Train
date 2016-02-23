@@ -2,32 +2,32 @@ package sii.maroc.presentation;
 
 import sii.maroc.Wagon.Wagons;
 
-public class Train {
+class Train {
 
     private String representation;
     private Wagons wagons;
 
-    public Train(String Type) {
+    Train(String Type) {
 	this.representation = Type;
 	this.wagons = new Wagons(representation);
     }
 
-    public void detachEnd() {
+    void detachEnd() {
 	wagons.removeEnd();
     }
 
-    public void detachHead() {
+    void detachHead() {
 	wagons.removeHead();
     }
 
-    public boolean fill() {
+    boolean fill() {
 	if (trainIsCargo()) {
 	    wagons.fillCargo();
 	}
 	return false;
     }
 
-    public void attachEnd(String representation) {
+    void attachEnd(String representation) {
 	this.representation += representation;
 	wagons.attachWagonToTheEnd(representation);
     }
@@ -36,8 +36,8 @@ public class Train {
 	return representation.contains("C");
     }
 
-    public Object print() {
-	final TrainViewColon colonView = new TrainViewColon();
+    Object print() {
+	final TrainView colonView = new TrainViewColon();
 	wagons.print(colonView);
 	return colonView.getView();
     }

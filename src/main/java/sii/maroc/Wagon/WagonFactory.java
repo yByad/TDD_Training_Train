@@ -1,17 +1,19 @@
 package sii.maroc.Wagon;
 
-public class WagonFactory {
+import sii.maroc.presentation.WagonTypes;
+
+class WagonFactory {
 
     private static WagonFactory INSTANCE = new WagonFactory();
 
-    public WagonFactory() {
+    WagonFactory() {
     }
 
-    public static WagonFactory getInstance() {
+    static WagonFactory getInstance() {
 	return INSTANCE;
     }
 
-    public Wagon createWagon(String wagonType) {
+    Wagon createWagon(String wagonType) {
 	switch (wagonType) {
 	case "H":
 	    return new Wagon(WagonTypes.Head);

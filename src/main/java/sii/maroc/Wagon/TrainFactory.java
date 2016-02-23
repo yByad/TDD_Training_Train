@@ -3,7 +3,7 @@ package sii.maroc.Wagon;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrainFactory {
+class TrainFactory {
 
     private static TrainFactory INSTANCE = new TrainFactory();
     private WagonFactory wagonFactory;
@@ -14,11 +14,11 @@ public class TrainFactory {
 	wagonFactory = WagonFactory.getInstance();
     }
 
-    public static TrainFactory getInstance() {
+    static TrainFactory getInstance() {
 	return INSTANCE;
     }
 
-    public List<Wagon> createTrain(String trainType) {
+    List<Wagon> createTrain(String trainType) {
 	trainType = trainType.replaceAll("H$", "E");
 	resultTrain.clear();
 	attachWagonsToTrain(trainType);

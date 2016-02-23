@@ -1,5 +1,7 @@
 package sii.maroc.Wagon;
 
+import sii.maroc.presentation.WagonTypes;
+
 class Wagon {
 
     private WagonTypes Type;
@@ -12,7 +14,7 @@ class Wagon {
 	return this.isOfType(WagonTypes.Cargo_Unfilled);
     }
 
-    public WagonTypes getType() {
+    WagonTypes getType() {
 	return Type;
     }
 

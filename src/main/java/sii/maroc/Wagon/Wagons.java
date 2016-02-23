@@ -2,7 +2,8 @@ package sii.maroc.Wagon;
 
 import java.util.List;
 
-import sii.maroc.presentation.TrainViewColon;
+import sii.maroc.presentation.TrainView;
+import sii.maroc.presentation.WagonTypes;
 
 public class Wagons {
     private List<Wagon> wagonsList;
@@ -34,7 +35,7 @@ public class Wagons {
 	}
     }
 
-    public void print(TrainViewColon presentation) {
+    public void print(TrainView presentation) {
 	unformattedTrain = "";
 	for (int indexOfWagon = 0; indexOfWagon < wagonsList.size(); indexOfWagon++) {
 	    final Wagon wagon = wagonsList.get(indexOfWagon);

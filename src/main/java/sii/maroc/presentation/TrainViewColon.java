@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import sii.maroc.Wagon.WagonTypes;
-
-public class TrainViewColon {
+class TrainViewColon implements TrainView {
 
     private static Map<WagonTypes, Presentations> wagonPresentations = new HashMap<WagonTypes, Presentations>();
 
@@ -24,6 +22,7 @@ public class TrainViewColon {
 	}
     }
 
+    @Override
     public String getView() {
 	addLinkers();
 	return trainPresentation;
@@ -37,13 +36,16 @@ public class TrainViewColon {
 	trainPresentation = trainPresentation.replaceAll(Pattern.quote("||"), "|::|");
     }
 
+    @Override
     public String getPresentationOf(WagonTypes type) {
 	final ColonPresentations wagonPresentation = (ColonPresentations) wagonPresentations.get(type);
 	final String presentation = wagonPresentation.value();
 	return presentation;
     }
 
-    public void setPresentation(String unformattedTrain) {
-	this.trainPresentation = unformattedTrain;
+    @Override
+    public void setPresentation(Object unformattedTrain) {
+
+	this.trainPresentation = unformattedTrain.toString();
     }
 }

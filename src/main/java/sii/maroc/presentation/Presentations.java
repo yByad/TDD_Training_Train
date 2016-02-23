@@ -1,6 +1,6 @@
 package sii.maroc.presentation;
 
-public interface Presentations {
+interface Presentations {
 
     String value();
 

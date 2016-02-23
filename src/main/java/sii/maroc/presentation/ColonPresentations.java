@@ -1,6 +1,6 @@
 package sii.maroc.presentation;
 
-public enum ColonPresentations implements Presentations {
+enum ColonPresentations implements Presentations {
 
     Passenger("|OOOO|"), Head("<HHHH"), Head_Right("HHHH>"), Cargo_Unfilled("|____|"), Restaurant(
 	    "|hThT|"), Cargo_Filled("|^^^^|"), Undefined("|%%%%|");
