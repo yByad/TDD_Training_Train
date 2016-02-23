@@ -5,8 +5,6 @@ import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
-import sii.maroc.presentation.Train;
-
 public class TrainTest {
 
     @Test
@@ -99,4 +97,22 @@ public class TrainTest {
 	train.fill();
 	assertEquals("<HHHH::|OOOO|::<HHHH::|hThT|::<HHHH::|OOOO|::HHHH>::|^^^^|", train.print());
     }
+
+    @Test
+    public void modifyAndFillTrain() {
+	Train train = new Train("HCRCH");
+	train.detachEnd();
+	assertEquals("<HHHH::|____|::|hThT|::|____|", train.print());
+	train.detachHead();
+	train.fill();
+	assertEquals("|^^^^|::|hThT|::|____|", train.print());
+	train.detachEnd();
+	train.fill();
+	assertEquals("|^^^^|::|hThT|", train.print());
+	train.detachEnd();
+	assertEquals("|^^^^|", train.print());
+	train.detachEnd();
+	assertEquals("|^^^^|", train.print());
+    }
+
 }

@@ -14,6 +14,7 @@ class TrainViewColon implements TrainView {
     private String trainPresentation;
 
     public TrainViewColon() {
+	trainPresentation = "";
 	initializeWagonPresentations();
     }
 
@@ -30,6 +31,13 @@ class TrainViewColon implements TrainView {
 	return trainPresentation;
     }
 
+    @Override
+    public void getPresentationOf(WagonTypes type) {
+	final ColonPresentations wagonPresentation = (ColonPresentations) wagonPresentations.get(type);
+	final String presentation = wagonPresentation.value();
+	trainPresentation += presentation;
+    }
+
     private void addLinkers() {
 	trainPresentation = trainPresentation.replaceAll(Pattern.quote("|H"), "|::H");
 	trainPresentation = trainPresentation.replaceAll(Pattern.quote("|<"), "|::<");
@@ -38,16 +46,4 @@ class TrainViewColon implements TrainView {
 	trainPresentation = trainPresentation.replaceAll(Pattern.quote("||"), "|::|");
     }
 
-    @Override
-    public String getPresentationOf(WagonTypes type) {
-	final ColonPresentations wagonPresentation = (ColonPresentations) wagonPresentations.get(type);
-	final String presentation = wagonPresentation.value();
-	return presentation;
-    }
-
-    @Override
-    public void setPresentation(Object unformattedTrain) {
-
-	this.trainPresentation = unformattedTrain.toString();
-    }
 }

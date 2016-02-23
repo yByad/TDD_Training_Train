@@ -5,22 +5,16 @@ import java.util.List;
 
 class TrainFactory {
 
-    private static TrainFactory INSTANCE = new TrainFactory();
     private WagonFactory wagonFactory;
     private List<Wagon> resultTrain;
 
-    private TrainFactory() {
+    public TrainFactory() {
 	resultTrain = new ArrayList<Wagon>();
 	wagonFactory = WagonFactory.getInstance();
     }
 
-    static TrainFactory getInstance() {
-	return INSTANCE;
-    }
-
     List<Wagon> createTrain(String trainType) {
 	trainType = trainType.replaceAll("H$", "E");
-	resultTrain.clear();
 	attachWagonsToTrain(trainType);
 	return resultTrain;
     }

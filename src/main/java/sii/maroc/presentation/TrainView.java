@@ -4,10 +4,8 @@ import sii.maroc.Types.WagonTypes;
 
 public interface TrainView {
 
-    Object getView();
+    String getView();
 
-    void setPresentation(Object unformattedTrain);
-
-    String getPresentationOf(WagonTypes type);
+    void getPresentationOf(WagonTypes type);
 
 }

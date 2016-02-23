@@ -8,12 +8,9 @@ import sii.maroc.presentation.TrainView;
 public class Wagons {
     private List<Wagon> wagonsList;
     private TrainFactory factory;
-    private String trainRepresentation;
-    private String unformattedTrain;
 
     public Wagons(String representation) {
-	this.trainRepresentation = representation;
-	factory = TrainFactory.getInstance();
+	factory = new TrainFactory();
 	this.wagonsList = factory.createTrain(representation);
     }
 
@@ -25,7 +22,12 @@ public class Wagons {
     }
 
     private boolean hasHead() {
-	return trainRepresentation.contains("H");
+	for (int indexOfWagon = 0; indexOfWagon < wagonsList.size(); indexOfWagon++) {
+	    final Wagon wagon = wagonsList.get(indexOfWagon);
+	    final WagonTypes wagonType = wagon.getType();
+	    return wagonType.isOfType(WagonTypes.Head);
+	}
+	return false;
     }
 
     public void removeEnd() {
@@ -36,29 +38,19 @@ public class Wagons {
     }
 
     public void print(TrainView presentation) {
-	unformattedTrain = "";
 	for (int indexOfWagon = 0; indexOfWagon < wagonsList.size(); indexOfWagon++) {
 	    final Wagon wagon = wagonsList.get(indexOfWagon);
 	    final WagonTypes wagonType = wagon.getType();
-	    unformattedTrain += presentation.getPresentationOf(wagonType);
+	    presentation.getPresentationOf(wagonType);
 	}
-	presentation.setPresentation(unformattedTrain);
     }
 
     public boolean fillCargo() {
-	Boolean theFillWorked = false;
 	for (int i = 0; i < wagonsList.size(); i++) {
 	    final Wagon wagonToFill = wagonsList.get(i);
-	    theFillWorked = fillWagon(wagonToFill);
-	    if (theFillWorked)
-		break;
-	}
-	return theFillWorked;
-    }
-
-    private boolean fillWagon(final Wagon wagonToFill) {
-	if (wagonToFill.canBeFilled()) {
-	    return wagonToFill.fill();
+	    if (wagonToFill.canBeFilled()) {
+		return wagonToFill.fill();
+	    }
 	}
 	return false;
     }

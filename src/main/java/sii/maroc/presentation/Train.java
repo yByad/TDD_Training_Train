@@ -4,12 +4,11 @@ import sii.maroc.Wagon.Wagons;
 
 class Train {
 
-    private String representation;
     private Wagons wagons;
+    private TrainView view;
 
     Train(String Type) {
-	this.representation = Type;
-	this.wagons = new Wagons(representation);
+	this.wagons = new Wagons(Type);
     }
 
     void detachEnd() {
@@ -21,24 +20,16 @@ class Train {
     }
 
     boolean fill() {
-	if (trainIsCargo()) {
-	    wagons.fillCargo();
-	}
-	return false;
+	return wagons.fillCargo();
     }
 
     void attachEnd(String representation) {
-	this.representation += representation;
 	wagons.attachWagonToTheEnd(representation);
     }
 
-    private Boolean trainIsCargo() {
-	return representation.contains("C");
-    }
-
     Object print() {
-	final TrainView colonView = new TrainViewColon();
-	wagons.print(colonView);
-	return colonView.getView();
+	view = new TrainViewColon();
+	wagons.print(view);
+	return view.getView();
     }
 }
